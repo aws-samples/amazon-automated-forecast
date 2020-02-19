@@ -7,7 +7,7 @@ which can automatically:
 * create the machine learning model and generate the prediction result,
 * load the latest prediction result to DynamoDB for querying.
 
-Details can be found in the blog post: <link>
+Details can be found in the [blog post](https://aws.amazon.com/blogs/machine-learning/automating-your-amazon-forecast-workflow-with-lambda-step-functions-and-cloudwatch-events-rule/)
 
 ```bash
 .
