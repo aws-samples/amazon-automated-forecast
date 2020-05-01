@@ -140,7 +140,10 @@ public class LoadDataFromS3ToDynamoDBHandler implements RequestHandler<S3Event, 
         log.info(String.format("Finish loading and parsing %d new items from S3.", numberOfNewItems));
 
         DynamoDBMapper mapper = new DynamoDBMapper(ddbClient,
-                new DynamoDBMapperConfig(DynamoDBMapperConfig.TableNameOverride.withTableNameReplacement(DYNAMODB_PREDICTION_TABLE_NAME)));
+                DynamoDBMapperConfig.builder()
+                        .withTableNameOverride(DynamoDBMapperConfig
+                                .TableNameOverride.withTableNameReplacement(DYNAMODB_PREDICTION_TABLE_NAME))
+                        .build());
         mapper.batchSave(predictionResultItems);
         log.info("Finish writing to DynamoDB Table.");
 

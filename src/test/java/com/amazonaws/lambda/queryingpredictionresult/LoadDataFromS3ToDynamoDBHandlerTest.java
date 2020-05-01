@@ -199,14 +199,16 @@ public class LoadDataFromS3ToDynamoDBHandlerTest {
 
         S3EventNotification.S3BucketEntity bucket = new S3EventNotification.S3BucketEntity("dummyBucket",
                 mock(S3EventNotification.UserIdentityEntity.class), "dummyArn");
-        S3EventNotification.S3ObjectEntity object = new S3EventNotification.S3ObjectEntity(objectKey, 1024L, "dummyEtag", "dummyVersionId");
+        S3EventNotification.S3ObjectEntity object = new S3EventNotification.S3ObjectEntity(objectKey, 1024L,
+                "dummyEtag", "dummyVersionId", null/*no sequencer*/);
         S3EventNotification.S3Entity s3 = new S3EventNotification.S3Entity("dummyConfigurationId",
                 bucket, object, "dummySchemaVer");
 
         S3EventNotificationRecord record = new S3EventNotificationRecord("dummyRegion",
                 "dummyEventName", "dummyEventSrc", "2019-01-01T00:00:00.000",
                 "dummyEventVer", mock(S3EventNotification.RequestParametersEntity.class),
-                mock(S3EventNotification.ResponseElementsEntity.class), s3, mock(S3EventNotification.UserIdentityEntity.class));
+                mock(S3EventNotification.ResponseElementsEntity.class), s3, mock(S3EventNotification.UserIdentityEntity.class),
+                null/*no glacierEventData*/);
 
         return new S3Event(Collections.singletonList(record));
     }
