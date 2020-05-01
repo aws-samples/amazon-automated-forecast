@@ -27,7 +27,7 @@ public class CreateForecastExportJobHandlerTest extends BaseTest {
 
     private static final String TEST_FORECAST_EXPORT_RESULT_ROLE_ARN = "testExportResultRoleArn";
     private static final String TEST_PREDICTION_S3_BUCKET_NAMEE = "predictionBucket";
-    private static final String TEST_TGT_S3_FOLDER = "resources/target";
+    private static final String TEST_TGT_S3_FOLDER = "resources/tgt";
     @Rule
     public final EnvironmentVariables environmentVariables = new EnvironmentVariables();
 

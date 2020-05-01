@@ -52,7 +52,7 @@ public class LoadDataFromS3ToDynamoDBHandlerTest {
 
     private static final String AWS_REGION = "us-east-1";
     private static final String UNIT_TEST_ROOT_CLASS_PATH = "/";
-    private static final String UNIT_TEST_S3_FOLDER_NAME = "target";
+    private static final String UNIT_TEST_S3_FOLDER_NAME = "tgt";
     private static final String PREDICTION_TABLE_NAME = "LocalTestTable";
     private static final String PREDICTION_TABLE_HASH_KEY = PredictionResultItem.Attribute.ITEM_ID;
     private static final String PREDICTION_TABLE_RANGE_KEY = PredictionResultItem.Attribute.DATE;
@@ -61,7 +61,7 @@ public class LoadDataFromS3ToDynamoDBHandlerTest {
     private static final String PREDICTION_METADATA_TABLE_HASH_KEY = "metadataKey";
     private static final String PREDICTION_METADATA_TABLE_ATTRIBUTE_NAME = "metadataValue";
 
-    // test csv files are located under folder: resources/target/
+    // test csv files are located under folder: resources/tgt/
     private static final String TEST_EMPTY_FORECAST_EXPORT_JOB = "empty_forecast_export_job";
     private static final String TEST_OBJECT_KEY0 = String.format("%s/%s_2019-10-16T21-40-00Z_part0.csv", UNIT_TEST_S3_FOLDER_NAME, TEST_EMPTY_FORECAST_EXPORT_JOB);
 
