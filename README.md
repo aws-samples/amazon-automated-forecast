@@ -15,8 +15,6 @@ Details can be found in the [blog post](https://aws.amazon.com/blogs/machine-lea
 ├── LICENSE.txt                 <-- MIT No Attribution License (MIT-0)
 ├── NOTICE.txt                  <-- Copyright notices
 ├── build.gradle                <-- Java dependencies
-├── gradlew
-├── gradlew.bat
 ├── src
 │   ├── main
 │   │   └── resources                       <-- Contains a dummy demand records csv file used for simulating the database                     
@@ -87,12 +85,13 @@ Details can be found in the [blog post](https://aws.amazon.com/blogs/machine-lea
 
 ## Setup process
 
-### Installing dependencies
+### Installing dependencies and Building code
 
-We use `gradle` to install our dependencies and package our application into a JAR file:
+We use `sam` to trigger default `gradle` build tool for
+installing our dependencies and building our application into a JAR file:
 
 ```bash
-gradle build
+sam build
 ```
 
 ## Packaging and deployment
@@ -120,26 +119,21 @@ deploy anything - If you don't have a S3 bucket to store code artifacts then thi
 create one:
 
 ```bash
-export BUCKET_NAME=my_cool_new_bucket
+export BUCKET_NAME=<my_new_sam_bucket_name>
 aws s3 mb s3://$BUCKET_NAME
 ```
 
-Next, run the following command to package our Lambda function to S3:
-
-```bash
-sam package \
-    --template-file template.yaml \
-    --output-template-file packaged.yaml \
-    --s3-bucket $BUCKET_NAME
-```
-
 Next, the following command will create a Cloudformation Stack and deploy your SAM resources.
+Note, since s3 bucket name has to been unique across all accounts all regions,
+we make it as a cloudformation input parameter.
+So please specify your own bucket name for automated forecast project.
 
 ```bash
 sam deploy \
-    --template-file packaged.yaml \
-    --stack-name sam-orderHandler \
-    --capabilities CAPABILITY_IAM
+    --stack-name sam-automated-forecast \
+    --capabilities CAPABILITY_NAMED_IAM \
+    --s3-bucket $BUCKET_NAME
+    --parameter-overrides PredictionS3BucketName=<my_new_automated_forecast_bucket_name>
 ```
 
 > **See [Serverless Application Model (SAM) HOWTO Guide](https://github.com/awslabs/serverless-application-model/blob/master/HOWTO.md) for more details in how to get started.**
