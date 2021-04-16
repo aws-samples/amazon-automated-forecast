@@ -1,9 +1,10 @@
 plugins {
     id 'java'
 }
-
-sourceCompatibility = 1.8
-
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
 repositories {
     mavenCentral()
     maven {
@@ -16,30 +17,30 @@ configurations {
 }
 
 dependencies {
-    compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.715'
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-forecast', version: '1.11.715'
-    compile group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.715'
-    compile group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '2.2.7'
-    compile group: 'com.amazonaws', name: 'aws-lambda-java-log4j2', version: '1.1.0'
-    compile group: 'com.google.collections', name: 'google-collections', version: '1.0'
-    compile group: 'com.google.dagger', name: 'dagger', version: '2.26'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: '1.11.715'
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-forecast', version: '1.11.715'
+    implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.11.715'
+    implementation group: 'com.amazonaws', name: 'aws-lambda-java-events', version: '2.2.7'
+    implementation group: 'com.amazonaws', name: 'aws-lambda-java-log4j2', version: '1.1.0'
+    implementation group: 'com.google.collections', name: 'google-collections', version: '1.0'
+    implementation group: 'com.google.dagger', name: 'dagger', version: '2.26'
     annotationProcessor group: 'com.google.dagger', name: 'dagger-compiler', version: '2.26'
-    compile group: 'com.opencsv', name: 'opencsv', version: '5.1'
-    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
-    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.1'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 
-    testCompile group: 'com.amazonaws', name: 'DynamoDBLocal', version: '1.12.0'
+    testImplementation group: 'com.amazonaws', name: 'DynamoDBLocal', version: '1.12.0'
     dynamodb fileTree (dir: 'lib', include: ["*.dylib", "*.so", "*.dll"])
     dynamodb group: 'com.amazonaws', name: 'DynamoDBLocal', version: '1.12.0'
-    testCompile group: 'com.github.stefanbirkner', name: 'system-rules', version: '1.17.2'
-    testCompile group: 'junit', name: 'junit', version: '4.13'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
-    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.0'
-    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.10.0'
+    testImplementation group: 'com.github.stefanbirkner', name: 'system-rules', version: '1.17.2'
+    testImplementation group: 'junit', name: 'junit', version: '4.13'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.22.0'
 }
 
 task copyNativeDeps(type: Copy) {
